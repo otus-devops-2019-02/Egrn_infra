@@ -2,7 +2,8 @@ dist: trusty
 sudo: required
 language: bash
 before_install:
-- curl -s https://raw.githubusercontent.com/express42/otus-homeworks/2019-02/run.sh | sed '1d' | bash
+- curl -s https://raw.githubusercontent.com/express42/otus-homeworks/2019-02/run.sh |
+ bash
 notifications:
   slack:
     rooms:
