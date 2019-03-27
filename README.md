@@ -36,9 +36,10 @@ ssh someinternalhost
 
 ### Для проверки
 
+```bash
 bastion_IP = 35.228.38.144
 someinternalhost_IP = 10.166.0.3
-
+```
 
 ## Задача SSL
 
