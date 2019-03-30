@@ -28,7 +28,7 @@ ___
 bash```
 gcloud compute instances add-metadata $VMname --metadata-from-file startup-script=/path-to-file/...
 gcloud compute instances reset $VMname
-~~~
+```
 Скрипт: ./startup-script.sh
 
 ### Результат
