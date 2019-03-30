@@ -32,15 +32,14 @@ _
 
 ### Решение
 Воспользуемся возможностью добавления метаданных к уже запущенной машине
-
-bash```
+```bash
 gcloud compute instances add-metadata $VMname --metadata-from-file startup-script=/path-to-file/...
 gcloud compute instances reset $VMname
 ```
 
 ### Результат
-~Скрипт: ./startup-script.sh
-~Успешно созданная и настроенная ВМ: 35.228.54.204
+- Скрипт: ./startup-script.sh
+- Успешно созданная и настроенная ВМ: 35.228.54.204
 
 _
 
@@ -48,15 +47,13 @@ _
 Удалите созданное через веб интерфейс правило для работы приложения default-puma-server. Создайте аналогично е правило из консоли с помощью gcloud.
 
 ### Решение
-
-bash```
+```bash
 gcloud compute firewall-rules create puma-server --allow tcp:9292 --target-tags=puma-server
 ```
 
 ### Результат
 Cетевая связность:
-
-bash```
+```bash
 curl 35.228.57.135:9292
 curl 35.228.54.204:9292
 ```
