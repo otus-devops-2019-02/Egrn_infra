@@ -8,13 +8,13 @@
 ### Решение
 
 Рабочие скрипты:
-~./creat-vm.sh
-~./install_all.sh
+- ./creat-vm.sh
+- ./install_all.sh
 
 Скрипты для проверок:
-~./install_ruby.sh
-~./install_mongodb.sh
-~./deploy.sh
+- ./install_ruby.sh
+- ./install_mongodb.sh
+- ./deploy.sh
 
 ### Результат
 
