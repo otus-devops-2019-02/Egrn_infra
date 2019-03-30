@@ -23,7 +23,7 @@ testapp_IP = 35.228.57.135
 testapp_port = 9292
 ```
 
-__
+_
 
 
 ## Задача * Starup-script
@@ -42,7 +42,7 @@ gcloud compute instances reset $VMname
 ~Скрипт: ./startup-script.sh
 ~Успешно созданная и настроенная ВМ: 35.228.54.204
 
-___
+_
 
 ## Задача * Firewall rule
 Удалите созданное через веб интерфейс правило для работы приложения default-puma-server. Создайте аналогично е правило из консоли с помощью gcloud.
@@ -61,10 +61,8 @@ curl 35.228.57.135:9292
 curl 35.228.54.204:9292
 ```
 
+___
 
-
-
-======
 
 
 ## HW05_GCP1 cloud_bastion
