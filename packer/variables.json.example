@@ -1,0 +1,8 @@
+{
+    "project_id": "12345",
+    "image_family": "reddit",
+    "source_image_family": "ubuntu",
+    "zone": "europe",
+    "ssh_username": "user",
+    "machine_type": "160cpu"
+}

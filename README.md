@@ -1,5 +1,37 @@
 # Egrn_infra
 
+## HW07_PACKER packer-base
+
+### Задачи
+1. Парметризация шаблона packer
+2. Определение переменных в отдельном файле
+3. Дополнительный опции builder googlecompute
+
+### Результат
+1. ./packer/ubuntu16.json
+2. ./packer/variables.json.example
+3. ./packer/ubuntu16.json
+_
+
+### Задача *
+Создание ВМ с помощью скрипта, использующего ранее созданный образ ОС по шаблону immutable.json
+
+### Результат
+- Создан шаблон ./packer/immutable.json , который использует три провиженера: два из ./scripts/*.sh и один из ./files/*.sh , а также переменные из ./files/variables.json
+- C помощью immutable.json успешно создан образ, включающий ruby,mongo,puma и стартующий puma через systemd
+_
+
+### Задача *
+Создание ВМ с помощью скрипта, использующего ранее созданный образ ОС по шаблону immutable.json
+
+### Результат
+Скрипт ./config-scripts/create-reddit-vm.sh использует образ, в результате установки которого сразу доступен сервис ip:9292 
+
+
+___
+
+
+
 ## HW06_GCP2 cloud-testapp
 
 ## Задача Скрипты
