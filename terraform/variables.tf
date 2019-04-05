@@ -22,11 +22,6 @@ variable disk_image {
   description = "Disk image"
 }
 
-variable "user-sufx" {
-  type        = "list"
-  description = "Users ssh suffixes"
-}
-
 variable "users" {
   type        = "list"
   description = "Users ssh"

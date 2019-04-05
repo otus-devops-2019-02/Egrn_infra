@@ -4,4 +4,4 @@ zone = "europe-north"
 public_key_path = "./file.pub"
 private_key_path = "./file"
 disk_image = "reddit-base"
-users = [ "","1","2","-web" ]
+users = [ "appuser","appuser-one","appuser-two","appuser-web" ]
