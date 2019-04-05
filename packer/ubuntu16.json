@@ -9,7 +9,7 @@
 	"zone": "{{ user `zone` }}",
 	"ssh_username": "{{ user `ssh_username` }}",
 	"machine_type": "{{ user `machine_type` }}",
-	"disk_size": 11,
+	"disk_size": 10,
 	"disk_type": "pd-ssd",
 	"image_description": "ququsiki",
 	"network": "default",

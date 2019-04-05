@@ -13,3 +13,10 @@
 #doc/**/*.txt
 
 variables.json
+
+*.tfstate
+*.tfstate.*.backup
+*.tfstate.backup
+*.tfvars
+.terraform/
+*.backup
