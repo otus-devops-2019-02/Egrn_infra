@@ -9,7 +9,7 @@
 done
 ___
 #### Задача *
-1.	Опишите в коде добавление ssh ключа пользователя appuser1 в метаданные проекта. 
+Опишите в коде добавление ssh ключа пользователя appuser1 в метаданные проекта. 
 #### Решение *
 Для разнообразия добавил в метаданные инстанса, несмотря на обратную рекомендацию этого. Работает
 ```
@@ -17,6 +17,7 @@ metadata {
     ssh-keys = "appuser1:${replace(file(var.public_key_path),"appuser",appuser1)}
     }
 ```
+___
 #### Задача **
 Опишите в коде добавление нескольких ssh ключей для пользователей appuser* в метаданные проекта.
 #### Решение **
@@ -54,6 +55,31 @@ metadata {
 	ssh-keys = "${var.users[0]}:${replace(file(var.public_key_path),"appuser",var.users[0])}${var.users[1]}:${replace(file(var.public_key_path),"appuser",var.users[1])}"
 	}
 ``` 
+__
+
+#### Задача ***
+Создайте файл lb.tf и опишите в нем в коде terraform создание HTTP балансировщика, направляющего трафик на наше развернутое приложение на инстансе reddit-app
+#### Решение ***
+Все усепешно создал. Балансировку проверил, в том числе при отключении одной из машин. Output успешно обрабатывает все ip.
+Для балансировщика использовал ресурс google_compute_target_pool c указанием группы конкретных инстансов. Сразу реализовал создание инстансов через count.
+Заначения списка инстансов пула пришлось определить вручную. При попытке определять инстансы через переменную типа lis, столкнулся со сложностью в том, что при определении массива instances google_compute_target_pool не смог задать список через переменную типа list.
+Не нашел как в ресурсе google_compute_target_pool сослаться на count.index ресурса google_compute_instance.
+Хотел бы реализовать вот так:
+```
+resource "google_compute_target_pool" "reddit-app-pool" {
+  name   = "reddit-app-pool"
+  region = "${var.region}"
+  
+  instances = ["${var.zone}/${element(var.instances,<полный адрес count для google_compute_instance>)"]
+  
+  health_checks = [
+    "${google_compute_http_health_check.reddit-app-healthcheck.name}",
+  ]
+}
+
+```
+
+
 
 ___
 
