@@ -1,3 +1,5 @@
+#terraform apply -var 'instance_count='$i
+
 terraform {
   # Версия terraform
   required_version = ">=0.11,<0.12"
@@ -30,9 +32,8 @@ resource "google_compute_firewall" "firewall_puma" {
 #		value = "${element(var.users,count.index)}:${replace(file(var.public_key_path),"appuser",element(var.users,count.index))}"
 #}
 
-resource "google_compute_instance" "reddit-app-" {
-  name         = "reddit-app-${count.index}"
-  count        = 2
+resource "google_compute_instance" "app" {
+  name         = "reddit-app"
   machine_type = "g1-small"
   zone         = "${var.zone}"
   tags         = ["reddit-app"]
