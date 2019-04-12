@@ -1,7 +1,13 @@
-project = "infra-12345"
-region = "europe"
-zone = "europe-north"
-public_key_path = "~/.ssh/appuser.pub"
-private_key_path = "~/.ssh/appuser"
-disk_image = "reddit-base"
-users = [ "appuser","appuser-one","appuser-two","appuser-web" ]
+project = "example"
+region = "example"
+zone = "example"
+public_key_path = "example"
+private_key_path = "example"
+disk_image_app = "example"
+disk_image_db = "example"
+name_app = "example"
+name_db = "example"
+app_count = 1
+db_count = 1
+provision_need = 2
+
