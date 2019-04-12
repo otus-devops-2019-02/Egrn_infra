@@ -1,0 +1,27 @@
+{
+"builders": [
+	{
+	"type": "googlecompute",
+	"project_id": "{{ user `project_id` }}",
+	"image_name": "{{ user `image_family` }}-db-{{timestamp}}",
+	"image_family": "{{ user `image_family` }}",
+	"source_image_family": "{{ user `source_image_family` }}",
+	"zone": "{{ user `zone` }}",
+	"ssh_username": "{{ user `ssh_username` }}",
+	"machine_type": "{{ user `machine_type` }}",
+	"disk_size": 10,
+	"disk_type": "pd-ssd",
+	"image_description": "ququsiki",
+	"network": "default",
+	"tags":"puma-server,default-allow-http"
+	}
+],
+"provisioners": [
+    {
+    "type": "shell",
+    "script": "scripts/install_mongodb.sh",
+    "execute_command": "sudo {{.Path}}"
+    	}
+    ]
+}
+

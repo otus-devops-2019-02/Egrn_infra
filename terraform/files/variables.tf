@@ -22,6 +22,14 @@ variable disk_image {
   description = "Disk image"
 }
 
+variable disk_image_app {
+  description = "Disk image for app"
+}
+
+variable disk_image_db {
+  description = "Disk image for db"
+}
+
 variable "users" {
   type        = "list"
   description = "Users ssh"
