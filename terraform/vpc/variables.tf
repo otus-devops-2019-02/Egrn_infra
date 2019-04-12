@@ -4,6 +4,6 @@ variable region {}
 
 variable zone {}
 
-variable names {
+variable ssh_source_ranges {
   type = "list"
 }

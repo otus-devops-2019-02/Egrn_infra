@@ -1,15 +1,9 @@
-#terraform apply -var 'instance_count='$i
-
 terraform {
-  # Версия terraform
   required_version = ">=0.11,<0.12"
 }
 
 provider "google" {
-  # Версия провайдера
   version = "2.0.0"
-
-  # ID проекта
   project = "${var.project}"
   region  = "${var.region}"
 }
@@ -33,7 +27,8 @@ resource "google_compute_firewall" "firewall_puma" {
 #}
 
 resource "google_compute_instance" "app" {
-  name         = "reddit-app"
+  count        = 1
+  name         = "reddit-app-${count.index + 1}"
   machine_type = "g1-small"
   zone         = "${var.zone}"
   tags         = ["reddit-app"]
