@@ -12,6 +12,11 @@ variable app_count {}
 
 variable provision_need {}
 
-variable db_ip {
+variable db_ip_int {
   type = "string"
+}
+
+variable users {
+  type = "list"
+
 }

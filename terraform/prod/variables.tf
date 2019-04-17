@@ -21,3 +21,8 @@ variable app_count {}
 variable db_count {}
 
 variable provision_need {}
+
+variable users { 
+  type = "list"
+}
+

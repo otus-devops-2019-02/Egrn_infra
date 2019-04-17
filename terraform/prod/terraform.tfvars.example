@@ -10,3 +10,4 @@ name_db = "example"
 app_count = 1
 db_count = 1
 provision_need = 2
+users = ["examle"]

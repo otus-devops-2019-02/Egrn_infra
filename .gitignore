@@ -20,3 +20,6 @@ variables.json
 *.tfvars
 .terraform/
 *.backup
+get-pip.py
+expl
+instc-list
