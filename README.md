@@ -1,6 +1,30 @@
 # Egrn_infra
 ___
 ___
+## HW10: ansinble-1
+
+#### Задача
+Знакомство с ansible, пара компанд, плейбук clone
+#### Решение
+Выполнено.
+
+#### Задача *
+Скрипт для генерации схемы json, исползуемый в качестве dynamic inventory
+#### Решение
+Выполнено.
+Bash-скрипт получает данные из api gcloud: 
+- с параметром --yaml генерирует корректные файлы inventory и inventory.yml.
+- с параметром --list генерирует файл inventory.json и stdout
+- с параметром --host <IP> генерирует файл stdout
+Ансибл во всех случайх успешно парсит вывод, корректно получает список хостов группы, и выполняет команды
+```
+ansible group-name -i ./make-inventory.sh -m ping
+ansible IP -i ./make-inventory.sh -m ping
+
+```
+___
+___
+
 ## HW09: terraform-2
 
 #### Задача модули

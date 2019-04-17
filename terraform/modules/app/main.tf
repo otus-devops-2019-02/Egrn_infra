@@ -23,6 +23,17 @@ resource "google_compute_instance" "insts" {
   }
 }
 
+/*
+resource "google_compute_project_metadata_item" "default" {
+  key   = "ssh-keys"
+  #value = "${element(var.users,count.index)}:${replace(file(var.public_key_path),"appuser",element(var.users,count.index))}"
+  #value = "${join("\n",formatlist("Hello, %s!",var.users))}"
+  value = "${join("",formatlist("%s%s\n",replace(file(var.public_key_path),"appuser\n",""),var.users))}"
+
+}
+*/
+
+/*
 resource "null_resource" "app_provision" {
   count = "${var.app_count}"
 
@@ -47,7 +58,7 @@ resource "null_resource" "app_provision" {
 
   provisioner "remote-exec" {
     inline = [
-      "sudo sed 's/127.0.0.1:27017/${var.db_ip}:27017/g' -i /home/appuser/reddit/app.rb",
+      "sudo sed 's/127.0.0.1:27017/${var.db_ip_int}:27017/g' -i /home/appuser/reddit/app.rb",
       "sudo systemctl start puma",
     ]
 
@@ -60,6 +71,7 @@ resource "null_resource" "app_provision" {
     }
   }
 }
+*/
 
 #resource "google_compute_address" "app_ip" {
 #  name = "${var.name_app}-static-ip"

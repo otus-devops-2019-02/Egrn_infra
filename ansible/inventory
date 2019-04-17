@@ -1,0 +1,18 @@
+
+[prod]
+prod-app-1 ansible_host=35.228.146.87 ansible_user=appuser
+prod-app-2 ansible_host=35.228.212.148 ansible_user=appuser
+prod-db-1 ansible_host=35.228.57.135 ansible_user=appuser
+
+[stage]
+stage-app-1 ansible_host=35.228.246.154 ansible_user=appuser
+stage-db-1 ansible_host=35.228.188.184 ansible_user=appuser
+
+[app]
+prod-app-1 ansible_host=35.228.146.87 ansible_user=appuser
+prod-app-2 ansible_host=35.228.212.148 ansible_user=appuser
+stage-app-1 ansible_host=35.228.246.154 ansible_user=appuser
+
+[db]
+prod-db-1 ansible_host=35.228.57.135 ansible_user=appuser
+stage-db-1 ansible_host=35.228.188.184 ansible_user=appuser

@@ -28,5 +28,6 @@ module "app" {
   disk_image_app   = "${var.disk_image_app}"
   app_count        = "${var.app_count}"
   provision_need   = "${var.provision_need}"
-  db_ip            = "${join(",",module.db.instance_ip)}"
+  db_ip_int        = "${join(",",module.db.instance_ip_int)}"
+  users			   = "${var.users}"
 }
