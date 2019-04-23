@@ -8,15 +8,6 @@ prod:
       ansible_host: 35.228.212.148
       ansible_user: appuser
     prod-db-1:
-      ansible_host: 35.228.57.135
-      ansible_user: appuser
-
-stage:
-  hosts:
-    stage-app-1:
-      ansible_host: 35.228.246.154
-      ansible_user: appuser
-    stage-db-1:
       ansible_host: 35.228.188.184
       ansible_user: appuser
 
@@ -28,15 +19,9 @@ app:
     prod-app-2:
       ansible_host: 35.228.212.148
       ansible_user: appuser
-    stage-app-1:
-      ansible_host: 35.228.246.154
-      ansible_user: appuser
 
 db:
   hosts:
     prod-db-1:
-      ansible_host: 35.228.57.135
-      ansible_user: appuser
-    stage-db-1:
       ansible_host: 35.228.188.184
       ansible_user: appuser
