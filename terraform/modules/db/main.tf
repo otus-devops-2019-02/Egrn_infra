@@ -21,6 +21,7 @@ resource "google_compute_instance" "insts" {
   }
 }
 
+/*
 resource "null_resource" "db_provision" {
   count = "${var.db_count}"
 
@@ -47,10 +48,11 @@ resource "null_resource" "db_provision" {
     }
   }
 
-  /*  
-    provisioner "local-exec" {
-    #interpreter = ["bash"]
-    command = "echo DATABASE_URL=${google_compute_instance.insts.network_interface.0.access_config.0.nat_ip} > ${path.module}/files/.env"
-  }
-*/
+  	  
+    #provisioner "local-exec" {
+    ##interpreter = ["bash"]
+    #command = "echo DATABASE_URL=${google_compute_instance.insts.network_interface.0.access_config.0.nat_ip} > ${path.module}/files/.env"
+  	#}
+	
 }
+*/

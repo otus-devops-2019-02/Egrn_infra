@@ -1,7 +1,6 @@
 #!/bin/bash
 
 make_yaml(){
-
 if [ -f ./inventory ]; then > ./inventory
 fi
 if [ -f ./inventory.yml ]; then > ./inventory.yml
@@ -60,10 +59,10 @@ do
     echo "$name ansible_host=$ipExt ansible_user=$user" >> ./inventory
     echo -e "    $name:\n      ansible_host: $ipExt\n      ansible_user: $user" >> ./inventory.yml
 done
+
 }
 
 make_json_list(){
-
 if [ -f ./inventory.json ]; then > ./inventory.json
 fi
 
@@ -89,12 +88,10 @@ jq '.|group_by(.g2)|map({ g2: .[0].g2, hosts: map(.ip)})|map({(.g2):{hosts}})'`
 jq --argjson arr1 "$hostArray" --argjson arr2 "$allArray" --argjson arr3 "$groupArray1" --argjson arr4 "$groupArray2"  --argjson arr4 "$allArray" \
 -n '$arr1 + $arr2 + $arr3 + $arr4 | map(.) | add' |
 tee inventory.json
-
 }
 
 
 make_json_host(){
-
 #rowList=`cat ./instc-list | jq '[.[]|{name,ip:.networkInterfaces[].accessConfigs[].natIP}|select(.ip=="'$HOST'")]'`
 rowList=`gcloud compute instances list --format=json | jq '[.[]|{name,ip:.networkInterfaces[].accessConfigs[].natIP}|select(.ip=="'$HOST'")]'`
 
@@ -102,15 +99,31 @@ hostArray=`echo $rowList |
 jq '.|{_meta: {hostvars: map({(.ip): {var_name: .name, var_user: "appuser" }})|add }}'`
 
 echo $hostArray | jq .
-
 }
+
+
+terraform_output() {
+rowOutput=`cd ../terraform/stage; terraform output -json`
+
+#Fix ssh keys
+for i in `echo "$rowOutput" | jq '.[]|.value[]' -cr`;
+do
+	ssh-keygen -f "/root/.ssh/known_hosts" -R $i
+	#until nc -vzw 2 $ipExt 22; do sleep 1; done
+done
+
+#refreshin db ip
+db_host=`echo "$rowOutput" | jq '."ip-db-int".value[]' -r`
+sed -E 's/(db_host: )([0-9.]+)?/\1'$db_host'/g' -i ./*.yml
+}
+
 
 
 while true; do
   case "$1" in
-    -l | --list ) make_json_list; exit 0 ;;
+    -l | --list ) make_json_list; terraform_output;exit 0 ;;
     -h | --host ) HOST="$2"; make_json_host $HOST; break ;;
-    -y | --yaml ) make_yaml; break ;;
+    -y | --yaml ) make_yaml; terraform_output; break ;;
     -- ) shift; break ;;
     * ) break ;;
   esac
@@ -118,8 +131,3 @@ done
 
 
 exit 0
-
-
-
-
-# https://adamj.eu/tech/2016/12/04/writing-a-custom-ansible-dynamic-inventory-script/
