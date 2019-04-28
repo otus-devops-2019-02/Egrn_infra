@@ -1,8 +1,7 @@
 - name: Deploying Reddit app
   hosts: app
   become: true
-  vars:
-    db_host: 10.166.0.53
+
   tasks:
 
     - name: Clone reddit reposirory
@@ -10,7 +9,7 @@
         repo: 'https://github.com/express42/reddit.git'
         dest: /home/appuser/reddit
         version: monolith # <-- branch
-      notify: restart puma
+      notify: reload puma
 
     - name: Bundle install
       bundler:
@@ -19,5 +18,5 @@
 
   handlers:
 
-    - name: restart puma
+    - name: reload puma
       systemd: name=puma state=restarted

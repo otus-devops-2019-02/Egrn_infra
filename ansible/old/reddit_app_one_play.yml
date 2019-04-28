@@ -1,58 +1,64 @@
-- name: Configure DB hosts
-  hosts: db
-  become: true
-  tags: db-tag
+- name: Configure hosts & deploy application
+  hosts: all
   vars:
     mongo_bind_ip: 0.0.0.0
+    db_host: 
+
   tasks:
+    - name: Install mc
+      become: true
+      apt:
+        name: mc
+        update_cache: yes
+      tags: app-tag,db-tag
     
     - name: Change mongo config file
+      become: true
       template:
         src: templates/mongod.conf.j2
         dest: /etc/mongod.conf
         mode: 0644
+      tags: db-tag
       notify: restart mongod
-
-  handlers:
-
-    - name: restart mongod
-      service: name=mongod state=restarted
-
-- name: Configure APP hosts
-  hosts: app
-  become: true
-  tags: app-tag
-  vars:
-    db_host: 10.166.0.53
-  tasks:
-  
+      
     - name: Clone reddit reposirory
       git:
         repo: 'https://github.com/express42/reddit.git'
         dest: /home/appuser/reddit
         version: monolith # <-- branch
+      tags: app-tag
       notify: reload puma
 
     - name: Bundle install
       bundler:
         state: present
         chdir: /home/appuser/reddit # <-- В какой директории выполнить команду bundle
+      tags: app-tag
 
     - name: Add unit file for Puma
+      become: true
       copy:
         src: files/puma.service
         dest: /etc/systemd/system/puma.service
+      tags: app-tag
       notify: reload puma
 
     - name: Add config for DB connection
       template:
         src: templates/db_config.j2
         dest: /home/appuser/db_config
+      tags: app-tag
 
     - name: Enable puma
+      become: true
       systemd: name=puma enabled=yes
+      tags: app-tag
 
   handlers:
-
+    - name: restart mongod
+      become: true
+      service: name=mongod state=restarted
+  
     - name: reload puma
+      become: true
       systemd: name=puma state=restarted
