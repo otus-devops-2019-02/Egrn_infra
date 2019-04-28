@@ -24,7 +24,7 @@
     "user" : "{{ user `ssh_username` }}",
     "ssh_authorized_key_file": "{{ user `public_key` }}",
     "ssh_host_key_file": "{{ user `private_key` }}",
-    "playbook_file": "ansible/packer_db.yml"
+    "playbook_file": "ansible/playbooks/packer_db.yml"
 	}
 ]
 }
