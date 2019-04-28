@@ -2,7 +2,7 @@
 ___
 ___
 ## HW12: ansinble-3
-[![Build Status](https://travis-ci.com/otus-devops-2019-02/Egrn_infra.svg?branch=ansible-3)](https://travis-ci.org/otus-devops-2019-02/Egrn_infra)
+
 ####Задачи
 - Переносим созданные плейбуки в раздельные роли
 - Описываем два окружения
@@ -15,7 +15,7 @@ ___
 Настройте использование динамического инвентори для окружений stage и prod
 #### Решение
 Дополнил скрипт формирования инвентаря функционалом генерации дополнительных инвентарей /ansible/environments/prod/inventory и /ansible/environments/stage/inventory.
-Последовательность команд для применения.
+Выполнено. Последовательность команд для применения.
 ```
 terraform apply
 ...
@@ -25,14 +25,14 @@ make-inventory.sh -y
 ...
 ```
 ####Задачи **
-Настройка TravisCI
+Настройка проверок TravisCI:
 - packer validate для всех шаблонов
 - terraform validate и tflint для окружений stage и prod
 - ansible-lint для плейбуков Ansible
 - в README.md добавлен бейдж с статусом билда
 #### Решение
-Контейнер docker преподавателей использовать не стал, попробовал сделать окружением ВМ travis. Добавил mytravis.sh перед run.sh в .travis.yml.
-[![Build Status](https://travis-ci.com/otus-devops-2019-02/Egrn_infra.svg?branch=ansible-3)](https://travis-ci.org/otus-devops-2019-02/Egrn_infra)
+Не стал использовать преподавательский docker контейнер, попробовал сделать окружением на ВМ travis. Отлаживал с помощью trytravis и отдельного репозитория.
+Добавил инструкцию play-travis/mytravis.sh перед .../run.sh в .travis.yml [![Build Status](https://travis-ci.com/otus-devops-2019-02/Egrn_infra.svg?branch=ansible-3)](https://travis-ci.org/otus-devops-2019-02/Egrn_infra)
 
 ___
 ___

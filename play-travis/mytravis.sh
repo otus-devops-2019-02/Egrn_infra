@@ -62,6 +62,8 @@ do
 done
 
 #в README.md добавлен бейдж с статусом билда
-cat README.md | grep '\[Build Status\]'
+Bage=`cat README.md | grep '\[Build Status\]'`
 
-echo ${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH}
+if [ -z "$Bage" ]; then
+	exit 1
+fi
