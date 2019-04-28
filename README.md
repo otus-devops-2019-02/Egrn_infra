@@ -32,7 +32,9 @@ make-inventory.sh -y
 - в README.md добавлен бейдж с статусом билда
 #### Решение
 Не стал использовать преподавательский docker контейнер, попробовал сделать окружением на ВМ travis. Отлаживал с помощью trytravis и отдельного репозитория.
-Добавил инструкцию play-travis/mytravis.sh перед .../run.sh в .travis.yml [![Build Status](https://travis-ci.com/otus-devops-2019-02/Egrn_infra.svg?branch=ansible-3)](https://travis-ci.org/otus-devops-2019-02/Egrn_infra)
+Добавил инструкцию play-travis/mytravis.sh после .../run.sh в .travis.yml
+Скрипт ориентируется на exit 0, поэтому вывод конкретных проверок парсить не стал.
+[![Build Status](https://travis-ci.com/otus-devops-2019-02/Egrn_infra.svg?branch=ansible-3)](https://travis-ci.com/otus-devops-2019-02/Egrn_infra)
 
 ___
 ___

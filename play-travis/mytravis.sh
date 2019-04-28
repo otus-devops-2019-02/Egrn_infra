@@ -62,8 +62,11 @@ do
 done
 
 #в README.md добавлен бейдж с статусом билда
-Bage=`cat README.md | grep '\[Build Status\]'`
 
+echo 'Bage checking.........'
+Bage=`cat README.md | grep -E '.*Build Status.*ansible-3.*'`
 if [ -z "$Bage" ]; then
 	exit 1
+else
+	echo "Successfull"
 fi
