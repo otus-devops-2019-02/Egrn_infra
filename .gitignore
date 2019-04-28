@@ -24,3 +24,5 @@ get-pip.py
 expl
 instc-list
 *.retry
+jdauphant.nginx
+vault.key

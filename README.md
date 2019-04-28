@@ -1,6 +1,44 @@
 # Egrn_infra
 ___
 ___
+## HW12: ansinble-3
+
+####Задачи
+- Переносим созданные плейбуки в раздельные роли
+- Описываем два окружения
+- Используем коммьюнити роль nginx
+- Используем Ansible Vault для наших окружений
+#### Решение
+Выполнено.
+___
+####Задачи *
+Настройте использование динамического инвентори для окружений stage и prod
+#### Решение
+Дополнил скрипт формирования инвентаря функционалом генерации дополнительных инвентарей /ansible/environments/prod/inventory и /ansible/environments/stage/inventory.
+Выполнено. Последовательность команд для применения.
+```
+terraform apply
+...
+make-inventory.sh -y
+...
+ ansible-playbook -i environments/stage/inventory playbooks/site.yml
+...
+```
+####Задачи **
+Настройка проверок TravisCI:
+- packer validate для всех шаблонов
+- terraform validate и tflint для окружений stage и prod
+- ansible-lint для плейбуков Ansible
+- в README.md добавлен бейдж с статусом билда
+#### Решение
+Не стал использовать преподавательский docker контейнер, попробовал сделать окружением на ВМ travis. Отлаживал с помощью trytravis и отдельного репозитория.
+Добавил инструкцию play-travis/mytravis.sh после .../run.sh в .travis.yml
+Скрипт ориентируется на exit 0, поэтому вывод конкретных проверок парсить не стал.
+[![Build Status](https://travis-ci.com/otus-devops-2019-02/Egrn_infra.svg?branch=ansible-3)](https://travis-ci.com/otus-devops-2019-02/Egrn_infra)
+
+___
+___
+
 
 ## HW11: ansinble-2
 
@@ -30,7 +68,6 @@ ___
 - На основе созданных app и db образов запустите stage окружение.
 #### Решение
 Образы успешно сбилдились, stage на них поднялся, сценарии site.yml доконфигурили, приложение поднялось.
-
 ___
 ___
 ## HW10: ansinble-1
