@@ -5,6 +5,5 @@
   roles:
     - role: app
     - role: jdauphant.nginx
-      
       nginx_sites:
         "{{ sites }}"
