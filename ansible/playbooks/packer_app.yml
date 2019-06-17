@@ -1,8 +1,7 @@
-- name: Install Ruby && Bundler
+- name: Configure APP hosts
   hosts: all
   become: true
-  tasks:
-    - name: Install ruby and bundle
-      apt:
-        name: ["ruby-full", "ruby-bundler", "build-essential"]
-        update_cache: yes
+
+  roles:
+    - role: app
+    - role: jdauphant.nginx

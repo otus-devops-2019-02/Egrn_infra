@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #EXEC: export TERRENV=prod; bash -x make-inventory.sh --list
-#УЧУС: export TERRENV=prod; ansible-playbook site.yml -i make-inventory.sh
+#EXEC: export TERRENV=prod; ansible-playbook site.yml -i make-inventory.sh
 
 
 make_yml(){

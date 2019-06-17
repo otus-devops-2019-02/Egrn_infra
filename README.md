@@ -1,17 +1,53 @@
 # Egrn_infra
+[![Build Status](https://travis-ci.com/otus-devops-2019-02/Egrn_infra.svg?branch=master)](https://travis-ci.com/otus-devops-2019-02/Egrn_infra)
+___
+
+## HW13: ansinble-4
+
+####Задачи
+- Провиженинг ansible для vagrant инстансов
+- Тестирование роли спомощью molecule на vagrant
+- Переключение сбора образов packer на использование ролей
+
+####Решение
+Выполнено.
+__
+
+#### Задачи *1
+Конфигурация Vagrant для корректной работы проксирования приложения с помощью nginx
+#### Решение *1
+В vagrant файл добавлено определение переменной default-site, предназначенной для роли jdauphant.nginx
+Для обычного использования, переменные определены в environments group_vars
+
+__
+#### Задачи *2
+Вынести роль db в отдельный репозиторий: удалить роль из репозитория infra и сделать подключение роли через requirements.yml обоих окружений;
+#### Решение *2
+Роль вынесена в https://github.com/Egrn/ansible-role-db
+Роль устанавливается: ansible-galaxy install -r environments/prod/requirements.yml
+
+__
+#### Задачи *3
+- Подключить TravisCI для созданного репозитория с ролью db для автоматического прогона тестов в GCE 
+- Использовать бейдж билда
+- Настроить оповещения о билде в слак
+#### Решение *3
+[![Build Status](https://travis-ci.org/Egrn_infra/ansible-role-db.svg?branch=master)](https://travis-ci.org/Egrn/db)
+
+
 ___
 ___
 ## HW12: ansinble-3
 
-####Задачи
+#### Задачи
 - Переносим созданные плейбуки в раздельные роли
 - Описываем два окружения
 - Используем коммьюнити роль nginx
-- Используем Ansible Vault для наших окружений
+- Иcпользуем Ansible Vault для наших окружений
 #### Решение
 Выполнено.
 ___
-####Задачи *
+#### Задачи *
 Настройте использование динамического инвентори для окружений stage и prod
 #### Решение
 Дополнил скрипт формирования инвентаря функционалом генерации дополнительных инвентарей /ansible/environments/prod/inventory и /ansible/environments/stage/inventory.
@@ -24,7 +60,7 @@ make-inventory.sh -y
  ansible-playbook -i environments/stage/inventory playbooks/site.yml
 ...
 ```
-####Задачи **
+#### Задачи **
 Настройка проверок TravisCI:
 - packer validate для всех шаблонов
 - terraform validate и tflint для окружений stage и prod
@@ -33,7 +69,7 @@ make-inventory.sh -y
 #### Решение
 Не стал использовать преподавательский docker контейнер, попробовал сделать окружением на ВМ travis. Отлаживал с помощью trytravis и отдельного репозитория.
 Добавил инструкцию play-travis/mytravis.sh после .../run.sh в .travis.yml
-Скрипт ориентируется на exit 0, поэтому вывод конкретных проверок парсить не стал.
+Travis ориентируется на exit 0 скрипта, поэтому вывод отдельных проверок внутри скрипта парсить не стал.
 [![Build Status](https://travis-ci.com/otus-devops-2019-02/Egrn_infra.svg?branch=ansible-3)](https://travis-ci.com/otus-devops-2019-02/Egrn_infra)
 
 ___
@@ -353,4 +389,3 @@ service pritunl restart
 ```bash
 true | openssl s_client -showcerts -connect 35-228-38-144.sslip.io:443 | openssl x509 -text | head -10
 ```
-
