@@ -1,1 +1,9 @@
-db_host: 
+db_host: 10.166.15.231
+deploy_user: appuser
+sites:
+ default:
+   - listen 80
+   - server_name _
+   - root "/usr/share/nginx/html"
+   - index index.html
+   - location / { proxy_pass http://127.0.0.1:9292; }
