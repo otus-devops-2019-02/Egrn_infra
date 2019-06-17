@@ -32,8 +32,7 @@ __
 - Использовать бейдж билда
 - Настроить оповещения о билде в слак
 #### Решение *3
-[![Build Status](https://travis-ci.org/Egrn_infra/ansible-role-db.svg?branch=master)](https://travis-ci.org/Egrn/db)
-
+[![Build Status](https://travis-ci.org/Egrn/ansible-role-db.svg?branch=master)](https://travis-ci.org/Egrn/ansible-role-db)
 
 ___
 ___
